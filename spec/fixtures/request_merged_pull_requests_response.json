@@ -9,7 +9,7 @@
     "number": 111,
     "state": "closed",
     "locked": false,
-    "title": "1/weeknd: Msg to take Sudoku as far as possible",
+    "title": "some merged feature",
     "user": {
       "login": "some-user",
       "id": 45678,
@@ -67,7 +67,7 @@
         "site_admin": false
       },
       "repo": {
-        "id": 15321339,
+        "id": 12345678,
         "name": "some-repo",
         "full_name": "some-org/some-repo",
         "owner": {
@@ -179,7 +179,7 @@
         "site_admin": false
       },
       "repo": {
-        "id": 15321339,
+        "id": 12345678,
         "name": "some-repo",
         "full_name": "some-org/some-repo",
         "owner": {
@@ -304,7 +304,7 @@
     "number": 999,
     "state": "closed",
     "locked": false,
-    "title": "Create assessment-skills-and-topics.md",
+    "title": "some unmerged feature",
     "user": {
       "login": "some-user",
       "id": 424254,
@@ -362,7 +362,7 @@
         "site_admin": false
       },
       "repo": {
-        "id": 15321339,
+        "id": 12345678,
         "name": "some-repo",
         "full_name": "some-org/some-repo",
         "owner": {
@@ -474,7 +474,7 @@
         "site_admin": false
       },
       "repo": {
-        "id": 15321339,
+        "id": 12345678,
         "name": "some-repo",
         "full_name": "some-org/some-repo",
         "owner": {
