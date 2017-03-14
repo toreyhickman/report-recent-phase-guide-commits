@@ -3,9 +3,9 @@ require_relative "../spec_helper"
 describe Repository do
   let(:repository) do
     Repository.new({
-      :name     => "phase-X-guide",
-      :html_url => "https://github.com/some-org/phase-X-guide",
-      :commits  => ["some commit"]
+      :name           => "phase-X-guide",
+      :html_url       => "https://github.com/some-org/phase-X-guide",
+      :pull_requests  => ["some pull request"]
     })
   end
 
@@ -17,7 +17,7 @@ describe Repository do
     expect(repository.html_url).to eq "https://github.com/some-org/phase-X-guide"
   end
 
-  it "has commits" do
-    expect(repository.commits).to match_array ["some commit"]
+  it "has pull requests" do
+    expect(repository.pull_requests).to match_array ["some pull request"]
   end
 end
