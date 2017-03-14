@@ -13,7 +13,7 @@ describe RepositoryBuilder do
   describe "building a repository" do
     before(:each) do
       allow(client).to receive(:fetch_repository).with(org_name, repo_name).and_return(JSON.parse(File.read("#{APP_ROOT}/spec/fixtures/request_repository_response.json")))
-      allow(client).to receive(:fetch_merged_pull_requests).with(org_name, repo_name).and_return(JSON.parse(File.read("#{APP_ROOT}/spec/fixtures/request_merged_pull_requests_response.json")))
+      allow(client).to receive(:fetch_merged_pull_requests).with(org_name, repo_name).and_return([JSON.parse(File.read("#{APP_ROOT}/spec/fixtures/request_merged_pull_requests_response.json")).first])
     end
 
     it "builds a repository with a name" do
@@ -33,6 +33,10 @@ describe RepositoryBuilder do
 
       it "builds pull requests with an html url" do
         expect(pull_request.html_url).to eq "https://github.com/some-org/some-repo/pull/111"
+      end
+
+      it "builds pull requests with a merged time" do
+        expect(pull_request.merged_at).to eq Date.parse("2017-03-13T20:02:05Z")
       end
     end
   end

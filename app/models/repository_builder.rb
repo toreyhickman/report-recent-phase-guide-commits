@@ -32,8 +32,9 @@ class RepositoryBuilder
   def build_pull_requests
     pull_request_data.map do |data|
       PullRequest.new({
-        :title    => extract_pull_request_title(data),
-        :html_url => extract_pull_request_html_url(data)
+        :title     => extract_pull_request_title(data),
+        :html_url  => extract_pull_request_html_url(data),
+        :merged_at => Date.parse(extract_pull_request_merged_at(data))
       })
     end
   end
@@ -48,5 +49,9 @@ class RepositoryBuilder
 
   def extract_pull_request_html_url(data)
     data["html_url"]
+  end
+
+  def extract_pull_request_merged_at(data)
+    data["merged_at"]
   end
 end
