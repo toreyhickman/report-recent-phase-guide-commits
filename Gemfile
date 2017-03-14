@@ -6,4 +6,5 @@ gem "rspec", "~>3.0"
 gem "webmock"
 gem "dotenv"
 gem "httparty"
+gem "rake"
 
