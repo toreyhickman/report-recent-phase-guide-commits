@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+
+require File.expand_path("../../config/environment", __FILE__)
+
+ORG_NAME    = "devbootcamp-curriculum"
+REPO_NAMES  = ["phase-1-guide", "phase-2-guide", "phase-3-guide"]
+CUTOFF_DATE = Date.current.weeks_ago(3)
+
+repos = REPO_NAMES.map do |repo_name|
+  builder = RepositoryBuilder.new(ORG_NAME, repo_name)
+  builder.build_repository_with_merged_pull_requests
+end
+
+repos.each do |repo|
+  puts repo.name
+  puts repo.new_pull_requests(CUTOFF_DATE).map(&:title).map(&:titleize)
+  puts
+end

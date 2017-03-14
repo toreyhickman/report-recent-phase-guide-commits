@@ -7,4 +7,4 @@ gem "webmock"
 gem "dotenv"
 gem "httparty"
 gem "rake"
-
+gem "activesupport"
