@@ -11,12 +11,15 @@ repos = REPO_NAMES.map do |repo_name|
   builder.build_repository_with_merged_pull_requests(CUTOFF_DATE)
 end
 
-plain_text_email = Email::PlainTextEmail.new(repos)
-puts plain_text_email.body
-
-html_email = Email::HTMLEmail.new(repos)
-puts html_email.body
-
 
 gmail_client = Gmail.connect!(ENV["EMAIL"], ENV["EMAIL_PASSWORD"])
+email = gmail_client.compose do
+  to ENV["TO_LIST"]
+  bcc ENV["BCC_LIST"]
+  subject "Recent Phase Guide Updates"
+  text_part { body Email::PlainTextEmail.new(repos).body }
+  html_part { body Email::HTMLEmail.new(repos).body }
+end
+
+email.deliver!
 gmail_client.logout
