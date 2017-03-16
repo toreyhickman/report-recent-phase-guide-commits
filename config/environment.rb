@@ -3,6 +3,7 @@ require "dotenv"
 require "httparty"
 require "active_support/core_ext/date/calculations"
 require "gmail"
+require "erb"
 
 APP_ROOT = Pathname.new(File.expand_path("../../", __FILE__))
 APP_NAME = APP_ROOT.basename.to_s
