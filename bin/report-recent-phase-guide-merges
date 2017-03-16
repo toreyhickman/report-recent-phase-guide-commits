@@ -8,14 +8,12 @@ CUTOFF_DATE = Date.current.weeks_ago(3)
 
 repos = REPO_NAMES.map do |repo_name|
   builder = RepositoryBuilder.new(ORG_NAME, repo_name)
-  builder.build_repository_with_merged_pull_requests
+  builder.build_repository_with_merged_pull_requests(CUTOFF_DATE)
 end
 
-repos.each do |repo|
-  puts repo.name
-  puts repo.new_pull_requests(CUTOFF_DATE).map(&:title).map(&:titleize)
-  puts
-end
+plain_text_view = RepositoryListPlainTextView.new(repos).render
+
+puts plain_text_view
 
 gmail_client = Gmail.connect!(ENV["EMAIL"], ENV["EMAIL_PASSWORD"])
 gmail_client.logout

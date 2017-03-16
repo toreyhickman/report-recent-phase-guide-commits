@@ -14,7 +14,7 @@ describe GithubClient do
     stub_request_for_merged_pull_requests("some-org", "some-repo")
 
     actual   = GithubClient.fetch_merged_pull_requests("some-org", "some-repo")
-    expected = [JSON.parse(File.read("#{APP_ROOT}/spec/fixtures/request_merged_pull_requests_response.json")).first]
+    expected = JSON.parse(File.read("#{APP_ROOT}/spec/fixtures/request_merged_pull_requests_response.json"))[0..1]
 
     expect(actual).to eq expected
   end

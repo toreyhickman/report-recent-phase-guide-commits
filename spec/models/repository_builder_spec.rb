@@ -7,13 +7,13 @@ describe RepositoryBuilder do
   let(:builder) { RepositoryBuilder.new(org_name, repo_name, client) }
 
   let(:built_repository) do
-    builder.build_repository_with_merged_pull_requests
+    builder.build_repository_with_merged_pull_requests(Date.parse("2017-01-01"))
   end
 
   describe "building a repository" do
     before(:each) do
       allow(client).to receive(:fetch_repository).with(org_name, repo_name).and_return(JSON.parse(File.read("#{APP_ROOT}/spec/fixtures/request_repository_response.json")))
-      allow(client).to receive(:fetch_merged_pull_requests).with(org_name, repo_name).and_return([JSON.parse(File.read("#{APP_ROOT}/spec/fixtures/request_merged_pull_requests_response.json")).first])
+      allow(client).to receive(:fetch_merged_pull_requests).with(org_name, repo_name).and_return(JSON.parse(File.read("#{APP_ROOT}/spec/fixtures/request_merged_pull_requests_response.json"))[0..1])
     end
 
     it "builds a repository with a name" do
@@ -25,7 +25,13 @@ describe RepositoryBuilder do
     end
 
     describe "building the pull requests" do
+      # Expected values come from the fixture file
+      # spec/fixtures/request_merged_pull_requests_response.json
       let(:pull_request) { built_repository.pull_requests.first }
+
+      it "only includes pull requests merged on or after the cutoff date" do
+        expect(built_repository.pull_requests.count).to eq 1
+      end
 
       it "builds pull requests with a title" do
         expect(pull_request.title).to eq "some merged feature"
@@ -36,7 +42,7 @@ describe RepositoryBuilder do
       end
 
       it "builds pull requests with a merged time" do
-        expect(pull_request.merged_at).to eq Date.parse("2017-03-13T20:02:05Z")
+        expect(pull_request.merged_at).to eq Date.parse("2017-01-01T20:02:05Z")
       end
     end
   end
