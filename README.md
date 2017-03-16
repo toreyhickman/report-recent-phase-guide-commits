@@ -1,2 +1,2 @@
 # Report Recent Phase guide Commits
-This project builds a report which details the recent commits that were merged to the master branch of the Dev Bootcamp phase guides.
+This project builds and e-mails a report that details the recent pull requests that were merged to the master branch of the Dev Bootcamp phase guides.  The report is e-mailed to the relevant company mailing lists.
