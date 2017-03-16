@@ -16,3 +16,6 @@ repos.each do |repo|
   puts repo.new_pull_requests(CUTOFF_DATE).map(&:title).map(&:titleize)
   puts
 end
+
+gmail_client = Gmail.connect!(ENV["EMAIL"], ENV["EMAIL_PASSWORD"])
+gmail_client.logout
