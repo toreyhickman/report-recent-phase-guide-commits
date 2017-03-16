@@ -30,15 +30,16 @@ class RepositoryBuilder
   end
 
   def build_pull_requests(merge_date_cutoff)
-    pull_requests = pull_request_data.map do |data|
-      PullRequest.new({
-        :title     => extract_pull_request_title(data),
-        :html_url  => extract_pull_request_html_url(data),
-        :merged_at => Date.parse(extract_pull_request_merged_at(data))
-      })
-    end
+    pull_request_data.each_with_object([]) do |data, pull_requests|
+      merge_date = Date.parse(extract_pull_request_merged_at(data))
 
-    pull_requests.select { |pr| pr.merged_on_or_after?(merge_date_cutoff) }
+      if merge_date >= merge_date_cutoff
+        pull_requests << PullRequest.new({ :title     => extract_pull_request_title(data),
+                                           :html_url  => extract_pull_request_html_url(data),
+                                           :merged_at => merge_date
+                                         })
+      end
+    end
   end
 
   def pull_request_data
