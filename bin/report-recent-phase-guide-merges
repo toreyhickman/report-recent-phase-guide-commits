@@ -14,6 +14,9 @@ end
 plain_text_email = Email::PlainTextEmail.new(repos)
 puts plain_text_email.body
 
+html_email = Email::HTMLEmail.new(repos)
+puts html_email.body
+
 
 gmail_client = Gmail.connect!(ENV["EMAIL"], ENV["EMAIL_PASSWORD"])
 gmail_client.logout
