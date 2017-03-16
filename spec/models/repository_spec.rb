@@ -23,8 +23,4 @@ describe Repository do
   it "has pull requests" do
     expect(repository.pull_requests).to match_array [old_pull_request, new_pull_request]
   end
-
-  it "returns pull requests merged on or after a given date" do
-    expect(repository.new_pull_requests(Date.parse("2017-01-01"))).to eq [new_pull_request]
-  end
 end

@@ -40,10 +40,6 @@ describe RepositoryBuilder do
       it "builds pull requests with an html url" do
         expect(pull_request.html_url).to eq "https://github.com/some-org/some-repo/pull/111"
       end
-
-      it "builds pull requests with a merged time" do
-        expect(pull_request.merged_at).to eq Date.parse("2017-01-01T20:02:05Z")
-      end
     end
   end
 end

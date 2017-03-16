@@ -36,7 +36,6 @@ class RepositoryBuilder
       if merge_date >= merge_date_cutoff
         pull_requests << PullRequest.new({ :title     => extract_pull_request_title(data),
                                            :html_url  => extract_pull_request_html_url(data),
-                                           :merged_at => merge_date
                                          })
       end
     end
